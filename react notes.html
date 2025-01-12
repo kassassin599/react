@@ -1,0 +1,547 @@
+<!-- Setting up a React Environment
+If you have npx and Node.js installed -->
+npm uninstall -g create-react-app.
+npx create-react-app my-react-app
+
+
+<!-- Run this command to run the React application my-react-app: -->
+
+npm start
+
+<!-- Look in the my-react-app directory, and you will find a src folder. Inside the src folder there is a file called App.js, open it  -->
+
+
+
+<!-- Replace all the content inside the <div className="App"> with a <h1> element. -->
+  function App() {
+    return (
+      <div className="App">
+        <h1>Hello World!</h1>
+      </div>
+    );
+  }
+  
+  export default App;
+
+  <!-- Notice that we have removed the imports we do not need (logo.svg and App.css). -->
+
+
+  <!-- Upgrade to React 18
+  Upgrading an existing React application to version 18 only requires two steps. -->
+  <!-- To install the latest version, from your project folder run the following from the terminal: -->
+
+  npm i react@latest react-dom@latest
+
+
+  <!-- In order to take advantage of React 18's concurrent features you'll need to use the new root API for client rendering. -->
+  <!-- Before -->
+  import ReactDOM from 'react-dom';
+  ReactDOM.render(<App />, document.getElementById('root'));
+  
+ <!-- After -->
+  import ReactDOM from 'react-dom/client';
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+
+
+  <!-- Your application will work without using the new root API. If you continue to use ReactDOM.render your application will behave like React 17. -->
+
+
+  <!-- 6th version of ECMAScript, it was published in 2015, and is also known as ECMAScript 2015. -->
+
+
+<!-- index.js file -->
+<script>
+    import React from 'react';
+  import ReactDOM from 'react-dom/client';
+  
+  const myArray = ['apple', 'banana', 'orange'];
+  
+  const myList = myArray.map((item) => <p>{item}</p>)
+  
+  const container = document.getElementById('root');
+  const root = ReactDOM.createRoot(container);
+  root.render(myList);
+</script>
+
+
+
+  <!-- Spread Operator
+  The JavaScript spread operator (...) allows us to quickly copy all or part of an existing array or object into another array or object. -->
+
+  <script>
+    const numbersOne = [1, 2, 3];
+    const numbersTwo = [4, 5, 6];
+    const numbersCombined = [...numbersOne, ...numbersTwo];
+    
+    document.write(numbersCombined);
+    </script>
+
+
+
+<script>
+
+const numbers = [1, 2, 3, 4, 5, 6];
+
+const [one, two, ...rest] = numbers;
+
+document.write("<p>" + one + "</p>");
+document.write("<p>" + two + "</p>");
+document.write("<p>" + rest + "</p>");
+</script>
+
+
+<script>
+  const myVehicle = {
+    brand: 'Ford',
+    model: 'Mustang',
+    color: 'red'
+  }
+  
+  const updateMyVehicle = {
+    type: 'car',
+    year: 2021, 
+    color: 'yellow'
+  }
+  
+  const myUpdatedVehicle = {...myVehicle, ...updateMyVehicle}
+  
+  //Check the result object in the console:
+  console.log(myUpdatedVehicle);
+  </script>
+
+
+
+
+<!-- Modules
+JavaScript modules allow you to break up your code into separate files.
+
+This makes it easier to maintain the code-base.
+
+ES Modules rely on the import and export statements. -->
+
+
+
+<!-- Export -->
+<!-- You can export a function or variable from any file.
+
+Let us create a file named person.js, and fill it with the things we want to export.
+
+There are two types of exports: Named and Default. -->
+
+<script>
+  export const name = "rahul"
+  export const age = 40
+</script>
+
+<script>
+const name = "rahul"
+const age = 40
+
+export { name, age }
+</script>
+
+
+
+
+<!-- Default Exports -->
+<!-- Let us create another file, named message.js, and use it for demonstrating default export.
+
+You can only have one default export in a file. -->
+ <script>
+  const message = () => {
+  const name = "rahul";
+  const age = 40;
+  return name + ' is ' + age + 'years old.';
+};
+
+export default message;
+ </script>
+
+
+
+<!-- Import -->
+<!-- You can import modules into a file in two ways, based on if they are named exports or default exports.
+
+Named exports must be destructured using curly braces. Default exports do not. -->
+
+<p id="demo"></p>
+
+<script type="module">
+import { name, age } from "./person.js";
+
+document.getElementById("demo").innerHTML = "My name is " + name;
+document.getElementById("demo").innerHTML += ", I am " + age + ".";
+
+</script>
+
+<!--  -->
+
+
+<p id="demo"></p>
+
+<script type="module">
+import message from "./message.js";
+
+document.getElementById("demo").innerHTML = message();
+
+</script>
+
+
+
+
+<!-- Ternary Operator -->
+<!-- The ternary operator is a simplified conditional operator like if / else.
+
+Syntax: condition ? <expression if true> : <expression if false> -->
+
+
+<!-- regular way -->
+<h1 id="demo"></h1>
+
+<script>
+function renderApp() {
+  document.getElementById("demo").innerHTML = "Welcome!";
+}
+
+function renderLogin() {
+  document.getElementById("demo").innerHTML = "Please log in";
+}
+
+let authenticated1 = true;
+
+if (authenticated1) {
+  renderApp();
+} else {
+  renderLogin();
+}
+
+</script>
+
+<p>Try changing the "authenticated" variable to false, and run the code to see what happens.</p>
+
+
+<!-- by ternary -->
+<h1 id="demo"></h1>
+
+<script>
+function renderApp() {
+  document.getElementById("demo").innerHTML = "Welcome!";
+}
+
+function renderLogin() {
+  document.getElementById("demo").innerHTML = "Please log in";
+}
+
+let authenticated = true;
+
+authenticated ? renderApp() : renderLogin();
+
+</script>
+
+<p>Try changing the "authenticated" variable to false, and run the code to see what happens.</p>
+
+
+
+
+<!-- The createRoot Function -->
+<!-- The createRoot() function takes one argument, an HTML element. -->
+
+<!-- The purpose of the function is to define the HTML element where a React component should be displayed. -->
+
+<!-- The render Method -->
+<!-- The render() method is then called to define the React component that should be rendered. -->
+
+<script>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myelement = (
+  <table>
+    <tr>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <td>John</td>
+    </tr>
+    <tr>
+      <td>Elsa</td>
+    </tr>
+  </table>
+);
+
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(myelement);
+</script>
+
+
+
+<!-- 
+ -->
+<script>
+ import React from 'react';
+ import ReactDOM from 'react-dom/client';
+ 
+ const myelement = (
+   <table>
+     <tr>
+       <th>Name</th>
+     </tr>
+     <tr>
+       <td>John</td>
+     </tr>
+     <tr>
+       <td>Elsa</td>
+     </tr>
+   </table>
+ );
+
+ const myelement1 = (
+  <p>Hallo</p>
+ );
+ const container = document.getElementById('sandy');
+ const root = ReactDOM.createRoot(container);
+ root.render(myelement1);
+ 
+ 
+ const container1 = document.getElementById('root');
+ const root1 = ReactDOM.createRoot(container1);
+ root1.render(myelement);
+ 
+ // another way
+ const renderComponents = () => {
+   const container = document.getElementById('sandy');
+   const root = ReactDOM.createRoot(container);
+   root.render(<p>Hallo</p>);
+ 
+   const container1 = document.getElementById('root');
+   const root1 = ReactDOM.createRoot(container1);
+   root1.render(myelement);
+ };
+ 
+ // Call the function to render both containers
+ renderComponents();
+</script>
+
+
+<!-- another way -->
+ <script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myelement = (
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+      </tr>
+      <tr>
+        <td>Elsa</td>
+      </tr>
+    </tbody>
+  </table>
+);
+
+const myelement2 = (
+  <p>Hallo</p>
+);
+
+// Wrap both elements in a parent element like a div or React.Fragment
+const combinedElement = (
+  <div>
+    {myelement}
+    {myelement2}
+  </div>
+);
+
+const container1 = document.getElementById('root');
+const root1 = ReactDOM.createRoot(container1);
+root1.render(combinedElement);
+
+ </script>
+
+
+<!-- What is JSX? -->
+<!-- JSX stands for JavaScript XML.
+
+JSX allows us to write HTML in React.
+
+JSX makes it easier to write and add HTML in React. -->
+
+
+<script>
+  const myElement = <h1>I Love JSX!</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+
+</script>
+
+
+
+<!-- Expressions in JSX -->
+ <script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = <h1>React is {5 + 5} times better with JSX</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+ </script>
+
+
+
+
+
+<!-- Inserting a Large Block of HTML
+To write HTML on multiple lines, put the HTML inside parentheses: -->
+<script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = (
+  <div> 
+    <ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+  </ul>
+  <ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+  </ul>
+  </div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+</script>
+
+
+
+<!-- One Top Level Element
+The HTML code must be wrapped in ONE top level element.
+
+So if you like to write two paragraphs, you must put them inside a parent element, like a div element. -->
+<script>
+import React from 'react';
+  import ReactDOM from 'react-do/client';
+  
+  const myElement = (
+    <div>
+      <h1>I am a Header.</h1>
+      <h1>I am a Header too.</h1>
+    </div>
+  );
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(myElement);
+  </script>
+
+
+
+
+
+<!-- Alternatively, you can use a "fragment" to wrap multiple lines. This will prevent unnecessarily adding extra nodes to the DOM.
+
+A fragment looks like an empty HTML tag: <></>. -->
+
+<script>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = (
+    <>
+      <p>I am a paragraph.</p>
+      <p>I am a paragraph too.</p>
+    </>
+  );
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+</script>
+
+
+<!-- Elements Must be Closed
+JSX follows XML rules, and therefore HTML elements must be properly closed. -->
+<script>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = <input type="text" />;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+
+</script>
+
+
+<!-- Attribute class = className -->
+<!-- The class attribute is a much used attribute in HTML, but since JSX is rendered as JavaScript, and the class keyword is a reserved word in JavaScript, you are not allowed to use it in JSX. -->
+
+<!-- Use attribute className instead. -->
+
+<!-- JSX solved this by using className instead. When JSX is rendered, it translates className attributes into class attributes. -->
+<script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './App.css';
+
+const myElement = <h1 className="myclass">Hello World</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+</script>
+
+
+
+
+<!-- 
+Conditions - if statements
+React supports if statements, but not inside JSX.
+
+To be able to use conditional statements in JSX, you should put the if statements outside of the JSX, or you could use a ternary expression instead:
+
+Option 1:
+Write if statements outside of the JSX code:
+ -->
+<script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const x = 5;
+let text = "Goodbye";
+if (x < 10) {
+  text = "Hello";
+}
+
+const myElement = <h1>{text}</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+
+</script>
+
+
+
+<!-- option-2 -->
+<!-- Use ternary expressions instead: -->
+ <script>
+  import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const x = 5;
+
+const myElement = <h1>{(x) < 10 ? "Hello" : "Goodbye"}</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+ </script>
