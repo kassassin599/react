@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const handleBlur = () => {
+  const handleCopy = () => {
 
-    alert("Input Lost Focus!");
+    alert("Text Copied!");
 
   };
 
 
 
 
+
   return (
     <>
-        <input type="text" onBlur={handleBlur} placeholder="Blur me" />
+         <input type="text" onCopy={handleCopy} value="Copy this text" readOnly />
+
     </>
   );
 }
