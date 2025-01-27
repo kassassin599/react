@@ -1,53 +1,40 @@
-import logo from "./logo.svg";
+import React, { useState } from 'react';
+
 import "./App.css";
 
 function App() {
+  const [text, setText] = useState("Mouse Over Me");
+
+  const handleMouseOver = () => {
+    setText("Thank You");
+  };
+
+  const handleMouseOut = () => {
+    setText("Mouse Over Me");
+  };
+
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <h3>What we do?</h3>
-      <h1>We take care of fututre!</h1>
-      <div id="cardholder">
-        <div id="topcards">
-          <div id="card">
-            <div id="info">
-              <p>Investment</p>
-              <h2>Strength solution</h2>
-              <a href="#">Read more -</a>
-            </div>
-          </div>
-          <div id="card">
-            <div id="info">
-              <p>Investment</p>
-              <h2>Strength solution</h2>
-              <a href="#">Read more -</a>
-            </div>
-          </div>
-        </div>
-        <div id="bottomcards">
-          <div id="card">
-            <div id="info">
-              <p>Investment</p>
-              <h2>Strength solution</h2>
-              <a href="#">Read more -</a>
-            </div>
-          </div>
-        </div>
+    <>
+      <div
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        style={{
+          backgroundColor: "#D94A38",
+
+          width: "120px",
+
+          height: "20px",
+
+          padding: "40px",
+
+          textAlign: "center",
+
+          cursor: "pointer",
+        }}
+      >
+        {text}
       </div>
-    </div>
+    </>
   );
 }
 
