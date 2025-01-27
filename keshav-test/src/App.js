@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const handleFocus = () => {
+  const handleBlur = () => {
 
-    alert("Input Focused!");
+    alert("Input Lost Focus!");
 
   };
 
 
+
+
   return (
     <>
-       <input type="text" onFocus={handleFocus} placeholder="Focus on me" />
+        <input type="text" onBlur={handleBlur} placeholder="Blur me" />
     </>
   );
 }
