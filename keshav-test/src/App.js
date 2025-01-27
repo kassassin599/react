@@ -1,17 +1,23 @@
-
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const handleKeyDown = () => {
+  const [value, setValue] = useState("");
 
-    alert("Key Pressed!");
+  const handleChange = (event) => {
+    setValue(event.target.value);
 
+    alert(`Input changed to: ${event.target.value}`);
   };
-
 
   return (
     <>
-     <input onKeyDown={handleKeyDown} placeholder="Press any key" />
+      <input
+        type="text"
+        value={value}
+        onChange={handleChange}
+        placeholder="Type something"
+      />
     </>
   );
 }
