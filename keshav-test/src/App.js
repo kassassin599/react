@@ -2,22 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [value, setValue] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-
-    alert(`Input changed to: ${event.target.value}`);
+    alert("Form Submitted!");
   };
 
   return (
     <>
-      <input
-        type="text"
-        value={value}
-        onChange={handleChange}
-        placeholder="Type something"
-      />
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Enter text" />
+
+        <button type="submit">Submit</button>
+      </form>
     </>
   );
 }
