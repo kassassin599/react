@@ -1,42 +1,103 @@
-import React, { useState, useEffect } from 'react';
-import "./App.css";
-
-function App() {
-  const [seconds, setSeconds] = useState(0);
+import React, { useState, createContext, useContext } from 'react';
 
 
 
-  useEffect(() => {
+// Step 1: Create a context for the theme
 
-    // Set up a timer that runs every second
-
-    const intervalId = setInterval(() => {
-
-      setSeconds((prevSeconds) => prevSeconds + 1);
-
-    }, 1000);
+const ThemeContext = createContext();
 
 
 
-    // Cleanup function: clear the interval when the component unmounts
+function ThemeProvider({ children }) {
 
-    return () => clearInterval(intervalId);
+  const [theme, setTheme] = useState('light');
 
-  }, []); // Run the effect only once on component mount
+
+
+  const toggleTheme = () => {
+
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+
+  };
 
 
 
   return (
 
-    <div>
+    // Step 2: Provide the theme and toggleTheme function to the component tree
 
-      <h3>Timer</h3>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
 
-      <p>Elapsed time: {seconds} seconds</p>
+      {children}
 
-    </div>
+    </ThemeContext.Provider>
 
   );
+
 }
+
+
+
+function ThemedButton() {
+
+  // Step 3: Consume the theme context using useContext
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+
+
+  return (
+
+    <button
+
+      onClick={toggleTheme}
+
+      style={{
+
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+
+        color: theme === 'light' ? '#000' : '#fff',
+
+        padding: '10px 20px',
+
+        border: 'none',
+
+        borderRadius: '5px',
+
+      }}
+
+    >
+
+      Toggle Theme
+
+    </button>
+
+  );
+
+}
+
+
+
+function App() {
+
+  return (
+
+    <ThemeProvider>
+
+      <div>
+
+        <h2>Current Theme</h2>
+
+        <ThemedButton />
+
+      </div>
+
+    </ThemeProvider>
+
+  );
+
+}
+
+
 
 export default App;
