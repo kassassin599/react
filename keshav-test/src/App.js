@@ -1,22 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import "./App.css";
 
 function App() {
-  const handleCopy = () => {
-
-    alert("Text Copied!");
-
-  };
+  const [seconds, setSeconds] = useState(0);
 
 
+
+  useEffect(() => {
+
+    // Set up a timer that runs every second
+
+    const intervalId = setInterval(() => {
+
+      setSeconds((prevSeconds) => prevSeconds + 1);
+
+    }, 1000);
+
+
+
+    // Cleanup function: clear the interval when the component unmounts
+
+    return () => clearInterval(intervalId);
+
+  }, []); // Run the effect only once on component mount
 
 
 
   return (
-    <>
-         <input type="text" onCopy={handleCopy} value="Copy this text" readOnly />
 
-    </>
+    <div>
+
+      <h3>Timer</h3>
+
+      <p>Elapsed time: {seconds} seconds</p>
+
+    </div>
+
   );
 }
 

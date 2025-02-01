@@ -545,3 +545,3062 @@ const myElement = <h1>{(x) < 10 ? "Hello" : "Goodbye"}</h1>;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(myElement);
  </script>
+
+
+
+
+
+Function Component
+
+Here is the same example as above, but created using a Function component instead.
+
+
+
+A Function component also returns HTML, and behaves much the same way as a Class component, but Function components can be written using much less code, are easier to understand, and will be preferred in this tutorial.
+
+-->
+
+
+
+<script>
+
+import React from 'react';   
+
+
+
+function App() {
+
+  return <h2>Hi, I am a Car!</h2>;
+
+}
+
+
+
+export default App;  
+
+</script>
+
+<!-- The index file works the same for class components and function components -->
+
+
+
+
+
+
+
+
+
+<!-- 
+
+Rendering a Component
+
+Now your React application has a component called Car, which returns an <h2> element.
+
+
+
+To use this component in your application, use similar syntax as normal HTML: <Car />
+
+-->
+
+<script>
+
+import React from 'react';
+
+import ReactDOM from 'react-dom/client';
+
+
+
+function Car() {
+
+  return <h2>Hi, I am a Car!</h2>;
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car />);
+
+</script>
+
+
+
+
+
+
+
+<!-- 
+
+Props
+
+Components can be passed as props, which stands for properties.
+
+
+
+Props are like function arguments, and you send them into the component as attributes.
+
+-->
+
+<script>
+
+import React from 'react';
+
+import ReactDOM from 'react-dom/client';
+
+
+
+function Car(props) {
+
+  return <h2>I am a {props.color} Car!</h2>;
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car color="red"/>);
+
+
+
+</script>
+
+
+
+
+
+
+
+<!-- 
+
+Components in Components
+
+We can refer to components inside other components:
+
+-->
+
+<script>
+
+ 
+
+import React from 'react';
+
+import ReactDOM from 'react-dom/client';
+
+
+
+function Car() {
+
+  return <h2>I am a Car!</h2>;
+
+}
+
+
+
+function Garage() {
+
+  return (
+
+    <>
+
+	    <h1>Who lives in my Garage?</h1>
+
+	    <Car />
+
+    </>
+
+  );
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Garage />);
+
+</script>
+
+
+
+
+
+
+
+<!-- 
+
+Components in Files
+
+React is all about re-using code, and it is recommended to split your components into separate files.
+
+
+
+To do that, create a new file with a .js file extension and put the code inside it:
+
+
+
+Note that the filename must start with an uppercase character.
+
+-->
+
+<!-- This is the new file, we named it "Car.js": -->
+
+<script>
+
+
+
+
+
+function Car() {
+
+  return <h2>Hi, I am a Car!</h2>;
+
+}
+
+
+
+export default Car;
+
+</script>
+
+
+
+
+
+
+
+<!-- 
+
+Now we import the "Car.js" file in the application, and we can use the Car component as if it was created here.
+
+-->
+
+<script>
+
+import React from 'react';
+
+import ReactDOM from 'react-dom/client';
+
+import Car from './Car/Car.js';
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car />);
+
+</script>
+
+
+
+
+
+<!-- React with CSS -->
+
+<!-- In JSX, JavaScript expressions are written inside curly braces, and since JavaScript objects also use curly braces, the styling in the example below is written inside two sets of curly braces {{}}. -->
+
+
+
+
+
+<!-- inline style -->
+
+<script>
+
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  const Header = () => {
+  
+    return (
+  
+      <>
+  
+        <h1 style={{color: "red"}}>Hello Style!</h1>
+  
+        <p>Add a little style!</p>
+  
+      </>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Header />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- properties with hyphen separators, like background-color, must be written with camel case syntax: -->
+  
+  
+  
+  <script>
+  
+    import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  const Header = () => {
+  
+    return (
+  
+      <>
+  
+        <h1 style={{backgroundColor: "lightblue"}}>Hello Style!</h1>
+  
+        <p>Add a little style!</p>
+  
+      </>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Header />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- You can also create an object with styling information, and refer to it in the style attribute: -->
+  
+  <script>
+  
+    import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  const Header = () => {
+  
+    const myStyle = {
+  
+      color: "white",
+  
+      backgroundColor: "DodgerBlue",
+  
+      padding: "10px",
+  
+      fontFamily: "Sans-Serif"
+  
+    };
+  
+    return (
+  
+      <>
+  
+        <h1 style={myStyle}>Hello Style!</h1>
+  
+        <p>Add a little style!</p>
+  
+      </>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Header />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- App.css:
+  
+  Create a new file called "App.css" and insert some CSS code in it: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  import './App.css';
+  
+  
+  
+  const Header = () => {
+  
+  return (
+  
+    <>
+  
+      <h1>Hello Style!</h1>
+  
+      <p>Add a little style!.</p>
+  
+    </>
+  
+  );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Header />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- CSS Modules -->
+  
+  
+  
+  <!-- Create a new file called "my-style.module.css" -->
+  
+  <!-- 
+  
+  .bigblue {
+  
+    color: DodgerBlue;
+  
+    padding: 40px;
+  
+    font-family: Sans-Serif;
+  
+    text-align: center;
+  
+  }
+  
+     -->
+  
+  
+  
+     <!-- import the stylesheet in your component: -->
+  
+  
+  
+  <script>
+  
+  // Car.js:
+  
+  import styles from './my-style.module.css'; 
+  
+  
+  
+  const Car = () => {
+  
+    return <h1 className={bigblue}>Hello Car!</h1>;
+  
+  }
+  
+  
+  
+  export default Car;
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  <!-- // Import the component in your application: -->
+  
+  <script>
+  
+    // index.js:
+  
+  
+  
+  import ReactDOM from 'react-dom/client';
+  
+  import Car from './Car.js';
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Car />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!--
+  
+   What is Sass
+  
+  Sass is a CSS pre-processor.
+  
+  
+  
+  Sass files are executed on the server and sends CSS to the browser. 
+  
+  file extension .scss
+  
+  
+  
+  mystyle.scss file
+  
+  
+  
+  $myColor: red;
+  
+  
+  
+  h1 {
+  
+    color: $myColor;
+  
+  }
+  
+  
+  
+  -->
+  
+  
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  import './mystyle.scss';
+  
+  
+  
+  const Header = () => {
+  
+    return (
+  
+      <>
+  
+        <h1>Hello Style!</h1>
+  
+        <p>Add a little style!.</p>
+  
+      </>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Header />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 
+  
+  Adding Events41
+  
+  React events are written in camelCase syntax:
+  
+  
+  
+  onClick instead of onclick.
+  
+  
+  
+  React event handlers are written inside curly braces:
+  
+  
+  
+  onClick={shoot}  instead of onclick="shoot()".
+  
+  -->
+  
+  React:
+  
+  <button onClick={shoot}>Take the Shot!</button>
+  
+  HTML:
+  
+  <button onclick="shoot()">Take the Shot!</button>
+  
+  
+  
+  <script>
+  
+    import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const shoot = () => {
+  
+      alert("Great Shot!");
+  
+    }
+  
+  
+  
+    return (
+  
+      <button onClick={shoot}>Take the shot!</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- Passing Arguments -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const shoot = (a) => {
+  
+      alert(a);
+  
+    }
+  
+  
+  
+    return (
+  
+      <button onClick={() => shoot("Goal!")}>Take the shot!</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- React Event Object -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const shoot = (a, b) => {
+  
+      alert(b.type);
+  
+      /*
+  
+      'b' represents the React event that triggered the function.
+  
+      In this case, the 'click' event
+  
+      */
+  
+    }
+  
+  
+  
+    return (
+  
+      <button onClick={(event) => shoot("Goal!", event)}>Take the shot!</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- 1. onClick Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const shoot = () => {
+  
+      alert("Great Shot!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <button onClick={shoot}>Take the Shot!</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 2. onDoubleClick Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const shoot = () => {
+  
+      alert("Double click detected!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <button onDoubleClick={shoot}>Double Click Me</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 3. onMouseEnter Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function Football() {
+  
+    const hover = () => {
+  
+      alert("Mouse Entered!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <button onMouseEnter={hover}>Hover Over Me</button>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<Football />);
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!-- onMouseOver onMouseOut event-->
+  
+  <script>
+  
+    import React, { useState } from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function App() {
+  
+    const [text, setText] = useState('Mouse Over Me');
+  
+  
+  
+    const handleMouseOver = () => {
+  
+      setText('Thank You');
+  
+    };
+  
+  
+  
+    const handleMouseOut = () => {
+  
+      setText('Mouse Over Me');
+  
+    };
+  
+  
+  
+    return (
+  
+      <div
+  
+        onMouseOver={handleMouseOver}
+  
+        onMouseOut={handleMouseOut}
+  
+        style={{
+  
+          backgroundColor: '#D94A38',
+  
+          width: '120px',
+  
+          height: '20px',
+  
+          padding: '40px',
+  
+          textAlign: 'center',
+  
+          cursor: 'pointer'
+  
+        }}
+  
+      >
+  
+        {text}
+  
+      </div>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<App />);
+  
+  
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 4. onKeyDown Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function KeyboardInput() {
+  
+    const handleKeyDown = () => {
+  
+      alert("Key Pressed!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <input onKeyDown={handleKeyDown} placeholder="Press any key" />
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<KeyboardInput />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 5. onChange Event: -->
+  
+  <script>
+  
+  import React, { useState } from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function InputChange() {
+  
+    const [value, setValue] = useState('');
+  
+  
+  
+    const handleChange = (event) => {
+  
+      setValue(event.target.value);
+  
+      alert(`Input changed to: ${event.target.value}`);
+  
+    };
+  
+  
+  
+    return (
+  
+      <input type="text" value={value} onChange={handleChange} placeholder="Type something" />
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<InputChange />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 6. onSubmit Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function FormSubmit() {
+  
+    const handleSubmit = (event) => {
+  
+      event.preventDefault();
+  
+      alert("Form Submitted!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <form onSubmit={handleSubmit}>
+  
+        <input type="text" placeholder="Enter text" />
+  
+        <button type="submit">Submit</button>
+  
+      </form>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<FormSubmit />);
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  <!-- example -->
+  
+  <script>
+  
+    import React, { useState } from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function FormSubmit() {
+  
+    const [value, setValue] = useState('');
+  
+  
+  
+    const handleSubmit = (event) => {
+  
+      event.preventDefault();
+  
+      alert(value);
+  
+      setValue(''); // Clear the input field by setting the state to an empty string
+  
+    };
+  
+  
+  
+    return (
+  
+      <form onSubmit={handleSubmit}>
+  
+        <input
+  
+          type="text"
+  
+          placeholder="Enter text"
+  
+          value={value}
+  
+          onChange={(e) => setValue(e.target.value)}
+  
+        />
+  
+        <button type="submit">Submit</button>
+  
+      </form>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<FormSubmit />);
+  
+  
+  
+   </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 7. onFocus Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function InputFocus() {
+  
+    const handleFocus = () => {
+  
+      alert("Input Focused!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <input type="text" onFocus={handleFocus} placeholder="Focus on me" />
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<InputFocus />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 8. onBlur Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function InputBlur() {
+  
+    const handleBlur = () => {
+  
+      alert("Input Lost Focus!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <input type="text" onBlur={handleBlur} placeholder="Blur me" />
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<InputBlur />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 9. onCopy Event: -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function CopyEvent() {
+  
+    const handleCopy = () => {
+  
+      alert("Text Copied!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <input type="text" onCopy={handleCopy} value="Copy this text" readOnly />
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<CopyEvent />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 10. onTouchStart Event (for touch devices): -->
+  
+  <script>
+  
+  import React from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function TouchStartEvent() {
+  
+    const handleTouchStart = () => {
+  
+      alert("Touch Started!");
+  
+    };
+  
+  
+  
+    return (
+  
+      <div onTouchStart={handleTouchStart} style={{ padding: '20px', backgroundColor: '#ddd' }}>
+  
+        Touch Here!
+  
+      </div>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<TouchStartEvent />);
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  <!--11. onMouseDown onMouseUp events -->
+  
+  <script>
+  
+    import React, { useState } from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  
+  
+  function App() {
+  
+    const [bgColor, setBgColor] = useState('#D94A38');
+  
+    const [text, setText] = useState('Click Me');
+  
+  
+  
+    const handleMouseDown = () => {
+  
+      setBgColor('#1ec5e5');
+  
+      setText('Release Me');
+  
+    };
+  
+  
+  
+    const handleMouseUp = () => {
+  
+      setBgColor('#D94A38');
+  
+      setText('Thank You');
+  
+    };
+  
+  
+  
+    return (
+  
+      <div
+  
+        onMouseDown={handleMouseDown}
+  
+        onMouseUp={handleMouseUp}
+  
+        style={{
+  
+          backgroundColor: bgColor,
+  
+          width: '90px',
+  
+          height: '20px',
+  
+          padding: '40px',
+  
+          textAlign: 'center',
+  
+          cursor: 'pointer'
+  
+        }}
+  
+      >
+  
+        {text}
+  
+      </div>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<App />);
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- Drag & drop -->
+  
+  <script>
+  
+  import React, { useState } from 'react';
+  
+  import ReactDOM from 'react-dom/client';
+  
+  import './App.css';  // Assuming this is your CSS file
+  
+  
+  
+  function App() {
+  
+    // State for displaying drag status messages
+  
+    const [dragMessage, setDragMessage] = useState('');
+  
+  
+  
+    // Function triggered when dragging starts
+  
+    const handleDragStart = (event) => {
+  
+      // Set the ID of the element being dragged
+  
+      event.dataTransfer.setData('Text', event.target.id); 
+  
+      //Parameters: The event object contains information about the drag action.
+  
+      // event.dataTransfer is an object that manages the data being dragged.
+  
+      // setData('Text', event.target.id) stores the ID of the element being dragged (in this case, the ID of the <p> tag). The 'Text' part specifies the format of the data being transferred, which is text here.By saving the element's ID, we can retrieve and move the dragged element when the drop event happens.
+  
+    };
+  
+  
+  
+    // Function triggered while dragging
+  
+    const handleDragging = () => {
+  
+      setDragMessage('The input is being dragged');
+  
+      // setDragMessage('The input is being dragged'): This changes the value of the dragMessage state to display the message, which updates the UI and informs the user that the input field is currently being dragged.
+  
+    };
+  
+  
+  
+    // Allow drop event
+  
+    const allowDrop = (event) => {
+  
+      event.preventDefault();
+  
+      // event.preventDefault(): By default, the browser doesn’t allow dropping elements into a container unless you explicitly tell it to. This method prevents the browser’s default behavior (which would block the drop) and enables us to allow the element to be dropped into the target container.
+  
+    };
+  
+  
+  
+    // Function triggered when the element is dropped
+  
+    const handleDrop = (event) => {
+  
+      event.preventDefault();
+  
+      const data = event.dataTransfer.getData('Text');
+  
+      event.target.appendChild(document.getElementById(data));
+  
+  
+  
+      // Hide the span and show the input field
+  
+      document.getElementById("textfield").style.display = 'block';
+  
+      document.getElementById("textname").style.display = 'none';
+  
+      setDragMessage('The input was dropped');
+  
+    };
+  
+  // event.preventDefault(): Like in allowDrop, this prevents the default browser behavior that would block the drop action.
+  
+  // const data = event.dataTransfer.getData('Text'): This retrieves the ID of the dragged element (which was set earlier using event.dataTransfer.setData in the handleDragStart function). Now, we know which element was dragged.
+  
+  // event.target.appendChild(document.getElementById(data)): This line appends the dragged element (using its ID) to the new drop zone. Essentially, it moves the dragged <p> tag from its original container to the drop target.
+  
+  // document.getElementById("textfield").style.display = 'block': This shows the hidden input field inside the dropped element.
+  
+  // document.getElementById("textname").style.display = 'none': This hides the text (Drag Me!) once the input field is visible.
+  
+  // setDragMessage('The input was dropped'): This updates the message to indicate the element was successfully dropped.
+  
+  
+  
+    return (
+  
+      <div className="container">
+  
+        <h1>Drag and Drop Example</h1>
+  
+        <h2 >Drag the Input Field</h2>
+  
+        <p>Drag the text below between the two boxes:</p>
+  
+  
+  
+        {/* First box (draggable area) */}
+  
+        <div 
+  
+          className="droptarget" 
+  
+        >
+  
+          <p
+  
+            onDragStart={handleDragStart}
+  
+            onDrag={handleDragging}
+  
+            draggable="true"
+  
+            id="dragtarget"
+  
+            className="draggable-text"
+  
+          >
+  
+            <span id='textname'>Drag Me!</span>
+  
+            <input type="text" id="textfield" className="hidden-input" />
+  
+          </p>
+  
+        </div>
+  
+  
+  
+        {/* Message Display */}
+  
+        <p className="message">{dragMessage}</p>
+  
+  
+  
+        {/* Second box (drop zone) */}
+  
+        <div 
+  
+          className="droptarget"
+  
+          onDrop={handleDrop}
+  
+          onDragOver={allowDrop}
+  
+        >
+  
+          <p>Drop here</p>
+  
+        </div>
+  
+      </div>
+  
+    );
+  
+  }
+  
+  
+  
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  
+  root.render(<App />);
+  
+  
+  
+  </script>
+  
+  
+  
+  css
+  
+  <style>/* General styles for the container */
+  
+    .container {
+  
+      display: flex;
+  
+      flex-direction: column;
+  
+      align-items: center;
+  
+      font-family: Arial, sans-serif;
+  
+      margin-top: 50px;
+  
+    }
+  
+    
+  
+    /* Styles for the drop target boxes */
+  
+    .droptarget {
+  
+      width: 200px;
+  
+      height: 100px;
+  
+      padding: 20px;
+  
+      margin: 20px;
+  
+      border: 2px dashed #333;
+  
+      border-radius: 8px;
+  
+      background-color: #f9f9f9;
+  
+      display: flex;
+  
+      justify-content: center;
+  
+      align-items: center;
+  
+      transition: background-color 0.3s;
+  
+    }
+  
+    
+  
+    .droptarget:hover {
+  
+      background-color: #f1f1f1;
+  
+    }
+  
+    
+  
+    /* Draggable text styling */
+  
+    .draggable-text {
+  
+      cursor: grab;
+  
+      font-size: 18px;
+  
+      color: #333;
+  
+      text-align: center;
+  
+    }
+  
+    
+  
+    /* Input field hidden initially */
+  
+    .hidden-input {
+  
+      display: none;
+  
+      width: 100%;
+  
+      padding: 5px;
+  
+      margin-top: 10px;
+  
+    }
+  
+    
+  
+    /* Message styling */
+  
+    .message {
+  
+      font-size: 16px;
+  
+      color: #333;
+  
+      margin: 10px;
+  
+      font-weight: bold;
+  
+    }</style>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--  -->
+  
+  
+  
+  
+  
+  <!-- React Hooks
+
+Hooks were added to React in version 16.8.
+
+React hooks are functions that allow you to use state and other React features in functional components. Before hooks, state and lifecycle methods were only available in class components. Hooks made it possible to manage component state and side effects directly within functional components, simplifying React code.
+
+Hooks allow function components to have access to state and other React features. Because of this, class components are generally no longer needed.
+
+You must import Hooks from react.
+
+
+
+Here we are using the useState Hook to keep track of the application state. 
+
+
+
+Hooks can only be called inside React function components.
+
+Hooks can only be called at the top level of a component.
+
+Hooks cannot be conditional
+
+Note: Hooks will not work in React class components.
+
+
+
+
+
+
+
+
+
+example:
+
+1. useState Hook
+
+The useState hook is used to add state to functional components. It allows you to manage local state in the component.
+
+
+
+we are destructuring the returned values from useState.
+
+The first value, color, is our current state.
+
+The second value, setColor, is the function that is used to update our state.
+
+These names are variables that can be named anything you would like.
+
+-->
+
+<script>
+
+  import { useState } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+function FavoriteColor() {
+
+  const [color, setColor] = useState("red");
+
+
+
+  return <h1>My favorite color is {color}!</h1>
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<FavoriteColor />);
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- Syntax: -->
+
+<script>
+
+const [state, setState] = useState(initialState);
+
+</script>
+
+
+
+
+
+<!-- 
+
+state: The current state value.
+
+setState: A function to update the state.
+
+initialState: The initial value of the state.
+
+Example:
+
+Let’s create a simple counter that increases when you click a button. -->
+
+
+
+<script>
+
+
+
+import React, { useState } from 'react';
+
+
+
+function Counter() {
+
+ <!-- Declare a state variable named 'count' with an initial value of 0 -->
+
+  const [count, setCount] = useState(0);
+
+
+
+  return (
+
+    <div>
+
+      <p>You clicked {count} times</p>
+
+      {/* Update the state by incrementing count when the button is clicked */}
+
+      <button onClick={() => setCount(count + 1)}>
+
+        Click me
+
+      </button>
+
+    </div>
+
+  );
+
+}
+
+
+
+export default Counter;
+
+</script>
+
+
+
+<!-- Explanation:
+
+The useState hook is used to declare a count state variable with an initial value of 0.
+
+Every time the button is clicked, the setCount function is called, updating the count state, and the component re-renders with the new state value. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- We should never directly update state. Ex: color = "red" is not allowed. -->
+
+
+
+<script>
+
+import React, { useState } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+function FavoriteColor() {
+
+  const [color, setColor] = useState("red");
+
+
+
+  return (
+
+    <>
+
+      <h1>My favorite color is {color}!</h1>
+
+      <button
+
+        type="button"
+
+        onClick={() => setColor("blue")}
+
+      >Blue</button>
+
+      <button
+
+        type="button"
+
+        onClick={() => setColor("red")}
+
+      >Red</button>
+
+      <button
+
+        type="button"
+
+        onClick={() => setColor("pink")}
+
+      >Pink</button>
+
+      <button
+
+        type="button"
+
+        onClick={() => setColor("green")}
+
+      >Green</button>
+
+    </>
+
+  );
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<FavoriteColor />);
+
+
+
+</script>
+
+
+
+
+
+<!-- example -->
+
+<script>
+
+import { useState } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+
+
+function Car() {
+
+  const [brand, setBrand] = useState("Ford");
+
+  const [model, setModel] = useState("Mustang");
+
+  const [year, setYear] = useState("1964");
+
+  const [color, setColor] = useState("red");
+
+  
+
+  return (
+
+    <>
+
+      <h1>My {brand}</h1>
+
+      <p>
+
+        It is a {color} {model} from {year}.
+
+      </p>
+
+    </>
+
+  )
+
+}
+
+
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car />);
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<!--  -->
+
+<script>
+
+ 
+
+import { useState } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+function Car() {
+
+  const [car, setCar] = useState({
+
+    brand: "Ford",
+
+    model: "Mustang",
+
+    year: "1964",
+
+    color: "red"
+
+  });
+
+  
+
+  return (
+
+    <>
+
+      <h1>My {car.brand}</h1>
+
+      <p>
+
+        It is a {car.color} {car.model} from {car.year}.
+
+      </p>
+
+    </>
+
+  )
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car />);
+
+</script>
+
+
+
+
+
+
+
+<!-- example -->
+
+<script>
+
+  import { useState } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+function Car() {
+
+  const [car, setCar] = useState({
+
+    brand: "Ford",
+
+    model: "Mustang",
+
+    year: "1964",
+
+    color: "red"
+
+  });
+
+  
+
+  const updateColor = () => {
+
+    setCar(previousState => {
+
+      return { ...previousState, color: "blue" }
+
+    });
+
+  }
+
+
+
+  return (
+
+    <>
+
+      <h1>My {car.brand}</h1>
+
+      <p>
+
+        It is a {car.color} {car.model} from {car.year}.
+
+      </p>
+
+      <button
+
+        type="button"
+
+        onClick={updateColor}
+
+      >Blue</button>
+
+    </>
+
+  )
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Car />);
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- useEffect 
+
+The useEffect Hook allows you to perform side effects in your components.
+
+
+
+Some examples of side effects are: fetching data, directly updating the DOM, and timers.
+
+
+
+useEffect accepts two arguments. The second argument is optional.
+
+
+
+useEffect(<function>, <dependency>)
+
+  -->
+
+
+
+
+
+<script>
+
+  useEffect(() => {
+
+    // Code to run on component mount or update
+
+    return () => {
+
+      // Cleanup function (optional)
+
+    };
+
+  }, [dependencyArray]);
+
+  
+
+  </script>
+
+
+
+  <!-- 
+
+  Effect callback: The code inside this function runs after the component renders.
+
+  
+
+  Cleanup function (optional): If the effect involves any side effect like setting a timer or subscribing to an event, the cleanup function is used to remove those effects when the component unmounts or updates.
+
+  
+
+  Dependency array: This array determines when the effect should run. If it's empty ([]), the effect will only run once on component mount. 
+
+  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+import { useState, useEffect } from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+
+function Timer() {
+
+  const [count, setCount] = useState(0);
+
+
+
+  useEffect(() => {
+
+    setTimeout(() => {
+
+      setCount((count) => count + 1);
+
+    }, 1000);
+
+
+
+    
+
+  }
+
+
+
+);
+
+
+
+  return <h1>I have rendered {count} times!</h1>;
+
+}
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(<Timer />);
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<!-- 
+
+                                             Timing Events
+
+  The window object allows execution of code at specified time intervals.
+
+  
+
+  These time intervals are called timing events.
+
+  
+
+  The two key methods to use with JavaScript are:
+
+  
+
+                                    setTimeout(function, milliseconds)
+
+  Executes a function, after waiting a specified number of milliseconds.
+
+  
+
+  setInterval(function, milliseconds)
+
+  Same as setTimeout(), but repeats the execution of the function continuously.
+
+
+
+
+
+                                      The setTimeout() Method
+
+  window.setTimeout(function, milliseconds);
+
+  The window.setTimeout() method can be written without the window prefix.
+
+  
+
+  The first parameter is a function to be executed.
+
+  
+
+  The second parameter indicates the number of milliseconds before execution. -->
+
+
+
+<!-- example -->
+
+<h2>JavaScript Timing</h2>
+
+
+
+<p>Click "Try it". Wait 3 seconds, and the page will alert "Hello".</p>
+
+
+
+<button onclick="setTimeout(myFunction, 3000);">Try it</button>
+
+
+
+<script>
+
+function myFunction() {
+
+  alert('Hello');
+
+}
+
+</script>
+
+
+
+                                      <!-- clearTimeout() -->
+
+<!-- How to Stop the Execution?
+
+The clearTimeout() method stops the execution of the function specified in setTimeout().
+
+
+
+window.clearTimeout(timeoutVariable)
+
+The window.clearTimeout() method can be written without the window prefix.
+
+
+
+The clearTimeout() method uses the variable returned from setTimeout():
+
+
+
+myVar = setTimeout(function, milliseconds);
+
+clearTimeout(myVar);
+
+If the function has not already been executed, you can stop the execution by calling the clearTimeout() method: -->
+
+
+
+<!-- example-->
+
+<h2>JavaScript Timing</h2>
+
+
+
+<p>Click "Try it". Wait 3 seconds. The page will alert "Hello".</p>
+
+<p>Click "Stop" to prevent the first function to execute.</p>
+
+<p>(You must click "Stop" before the 3 seconds are up.)</p>
+
+
+
+<button onclick="myVar = setTimeout(myFunction, 3000)">Try it</button>
+
+
+
+<button onclick="clearTimeout(myVar)">Stop it</button>
+
+
+
+<script>
+
+function myFunction() {
+
+  alert("Hello");
+
+}
+
+</script>
+
+
+
+
+
+<!-- 
+
+                                      The setInterval() Method
+
+The setInterval() method repeats a given function at every given time-interval.
+
+
+
+window.setInterval(function, milliseconds);
+
+The window.setInterval() method can be written without the window prefix.
+
+
+
+The first parameter is the function to be executed.
+
+
+
+The second parameter indicates the length of the time-interval between each execution.
+
+
+
+This example executes a function called "myTimer" once every second (like a digital watch). -->
+
+
+
+<h2>JavaScript Timing</h2>
+
+
+
+<p>A script on this page starts this clock:</p>
+
+
+
+<p id="demo"></p>
+
+
+
+<script>
+
+setInterval(myTimer, 1000);
+
+
+
+function myTimer() {
+
+  const d = new Date();
+
+  document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+
+import React, { useState, useEffect } from 'react';
+
+
+
+function Timer() {
+
+  const [seconds, setSeconds] = useState(0);
+
+
+
+  useEffect(() => {
+
+    // Set up a timer that runs every second
+
+    const intervalId = setInterval(() => {
+
+      setSeconds((prevSeconds) => prevSeconds + 1);
+
+    }, 1000);
+
+
+
+    // Cleanup function: clear the interval when the component unmounts
+
+    return () => clearInterval(intervalId);
+
+  }, []); // Run the effect only once on component mount
+
+
+
+  return (
+
+    <div>
+
+      <h3>Timer</h3>
+
+      <p>Elapsed time: {seconds} seconds</p>
+
+    </div>
+
+  );
+
+}
+
+
+
+export default Timer;
+
+
+
+</script>
+
+
+
+<!-- Explanation:
+
+The useEffect hook sets up a timer that increments the seconds state every second.
+
+The cleanup function inside useEffect clears the interval using clearInterval(intervalId) when the component unmounts (to avoid memory leaks).
+
+Recap:
+
+The useEffect hook is used for side effects such as data fetching or setting up a timer.
+
+The dependency array controls when the effect runs. If it's empty, the effect runs only once on mount.
+
+Cleanup functions ensure that any side effects are cleaned up when the component unmounts or updates. -->
+
+
+
+
+
+
+
+<!-- 
+
+3. useContext Hook
+
+The useContext hook allows you to consume context values in functional components. Context is a way to pass data through the component tree without having to pass props down manually at every level.
+
+
+
+When to use useContext:
+
+When you have global data or state (like theme, user authentication) that needs to be accessible by multiple components, without prop-drilling.
+
+How to use:
+
+Create a Context using React.createContext().
+
+Provide the Context using the <Context.Provider> component.
+
+Consume the Context in any component using the useContext hook.
+
+Example: Sharing a theme across components
+
+Let’s create an app where the theme (light or dark) is shared across components using useContext. -->
+
+
+
+ 
+
+<script>
+
+import React, { useState, createContext, useContext } from 'react';
+
+
+
+// Step 1: Create a context for the theme
+
+const ThemeContext = createContext();
+
+
+
+function ThemeProvider({ children }) {
+
+  const [theme, setTheme] = useState('light');
+
+
+
+  const toggleTheme = () => {
+
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+
+  };
+
+
+
+  return (
+
+    // Step 2: Provide the theme and toggleTheme function to the component tree
+
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+
+      {children}
+
+    </ThemeContext.Provider>
+
+  );
+
+}
+
+
+
+function ThemedButton() {
+
+  // Step 3: Consume the theme context using useContext
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+
+
+  return (
+
+    <button
+
+      onClick={toggleTheme}
+
+      style={{
+
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+
+        color: theme === 'light' ? '#000' : '#fff',
+
+        padding: '10px 20px',
+
+        border: 'none',
+
+        borderRadius: '5px',
+
+      }}
+
+    >
+
+      Toggle Theme
+
+    </button>
+
+  );
+
+}
+
+
+
+function App() {
+
+  return (
+
+    <ThemeProvider>
+
+      <div>
+
+        <h2>Current Theme</h2>
+
+        <ThemedButton />
+
+      </div>
+
+    </ThemeProvider>
+
+  );
+
+}
+
+
+
+export default App;
+
+</script>
+
+
+
+<!-- 
+
+Explanation:
+
+ThemeContext: Created using createContext(). It holds the theme (light or dark) and the toggleTheme function to switch between them.
+
+ThemeProvider: A wrapper component that provides the theme and toggleTheme to its children through the ThemeContext.Provider.
+
+ThemedButton: A component that consumes the theme using useContext(ThemeContext) and allows users to toggle the theme by clicking a button.
+
+Recap:
+
+useContext is used to consume a value from a context.
+
+Context is created using createContext(), and the value is provided via a <Context.Provider>.
+
+You can use useContext(Context) inside any component to access the context value.
+
+ -->
+
+
+
+
+
+
+
+
+<!-- hooks
+
+React hooks help karte hain functional components mein state manage karne, side effects handle karne, DOM elements access karne, aur complex logic implement karne mein, bina class components ka use kiye. 
+
+-->
+
+
+
+
+
+
+
+ <!-- 1. useState Hook
+
+ useState hook React mein state ko functional components mein use karne ke liye hota hai.
+
+  -->
+
+ 
+
+  <script>
+
+    import React, { useState } from 'react';
+   
+    
+   
+     function Counter() {
+   
+       const [count, setCount] = useState(0); // Yeh state "count" ko hold karega aur "setCount" usko update karega
+   
+     
+   
+       const handleClick = () => {
+   
+         setCount(count + 1); // Button click hone par count ko increment karega
+   
+       };
+   
+     
+   
+       return (
+   
+         <div>
+   
+           <p>Current Count: {count}</p> {/* Count ko dikhata hai */}
+   
+           <button onClick={handleClick}>Increment</button> {/* Button click karne par count badhta hai */}
+   
+         </div>
+   
+       );
+   
+     }
+   
+     
+   
+     export default Counter;
+   
+     </script>
+   
+    
+   
+    <!-- Explanation:
+   
+    useState(0): Yeh line ek state variable count banata hai aur initial value 0 set karta hai. (Yeh function component ke andar ek variable ko memory mein rakhta hai jo re-render hone ke baad bhi persist(bana) rehta hai.)
+   
+    setCount: Yeh function state ko update karta hai. -->
+   
+   
+   
+   
+   
+   
+   
+    <!-- example  -->
+   
+    <script>
+   
+     import React, { useState } from 'react';
+   
+   
+   
+   function LikeButton() {
+   
+     const [likes, setLikes] = useState(0); // Like count ko track karne ke liye state
+   
+   
+   
+     return (
+   
+       <div>
+   
+         <button onClick={() => setLikes(likes + 1)}>
+   
+           Like {likes} {/* Like count ko dikhata hai */}
+   
+         </button>
+   
+       </div>
+   
+     );
+   
+   }
+   
+   
+   
+   export default LikeButton;
+   
+   
+   
+    </script>
+   
+   <!-- 
+   
+    Explanation : Yeh button har baar jab user click karta hai, toh likes count 1 se badh jata hai. Jaise social media pe post par like button hota hai.
+   
+   
+   
+    -->
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    <!-- 2. useEffect Hook
+   
+    useEffect hook side effects handle karne ke liye hota hai. Side effects ka matlab hai ki jab component render hota hai ya update hota hai, kuch extra kaam karna (jaise data fetch karna, DOM ko update karna). -->
+   
+    
+   
+   <script>
+   
+   import React, { useState, useEffect } from 'react';
+   
+    
+   
+    function Timer() {
+   
+      const [seconds, setSeconds] = useState(0);
+   
+    
+   
+      useEffect(() => {
+   
+        const interval = setInterval(() => {
+   
+          setSeconds((prevSeconds) => prevSeconds + 1); // Har 1 second baad seconds ko update karta hai
+   
+        }, 1000);
+   
+    
+   
+        return () => clearInterval(interval); // Clean up kar raha hai jab component unmount hota hai
+   
+      }, []); // Empty dependency array ka matlab yeh effect sirf component ke pehle render hone par chalega
+   
+    
+   
+      return (
+   
+        <div>
+   
+          <p>Time: {seconds} seconds</p> {/* Timer ko display karta hai */}
+   
+        </div>
+   
+      );
+   
+    }
+   
+    
+   
+    export default Timer;
+   
+   
+   
+   </script>
+   
+    
+   
+    <!-- Explanation:
+   
+    useEffect: Yeh hook har render ke baad chalega, lekin agar aap dependency array ([]) dete ho, toh yeh sirf pehli baar component ke mount hone par chalega. (Yeh lifecycle methods jaisa kaam karta hai jaise class components mein componentDidMount, componentDidUpdate, etc.) -->
+   
+    
+   
+    
+   
+   
+
+
+
+  
+  
+  
