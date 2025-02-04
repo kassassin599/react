@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-container {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 400px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-box {
   display: flex;
   flex-direction: column;
+}
+
+.user-type {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 15px;
+}
+.user-type input {
+  margin-right: 8px;
+}
+.user-type label {
+  margin-right: 25px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  width: 45px;
+  height: 35px;
+  cursor: pointer;
+  border: 2px solid #007bff;
+  padding: 8px;
+}
+
+.remember-me {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: 10px 0;
+  gap: 8px;
+}
+
+.btn {
+  background-color: #007bff;
   color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.btn.secondary {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:hover {
+  opacity: 0.8;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-text a {
+  color: #007bff;
+  text-decoration: none;
 }
